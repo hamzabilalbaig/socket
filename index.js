@@ -1,8 +1,8 @@
-const io = require("socket.io")(8900, {
-  cors: {
-    origin: "http://dotexfyp.vercel.app",
-  },
-});
+const express = require("express");
+const app = express();
+const port = 3000;
+
+const io = require("socket.io")(port, () => console.log("socket server"));
 
 let users = [];
 
@@ -36,6 +36,8 @@ io.on("connection", (socket) => {
       senderId,
       text,
     });
+
+    console.log("sending message");
   });
 
   //when disconnect
